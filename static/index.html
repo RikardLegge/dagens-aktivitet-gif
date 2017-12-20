@@ -1,0 +1,50 @@
+<head>
+    <style>
+        body, root {
+            width: 100%;
+        }
+        .box{
+            width: fit-content;
+            margin: auto;
+            padding-bottom: 20px;
+        }
+        .post {
+            padding: 0 0 20px 0;
+            box-shadow: 0px 0px 10px black;
+        }
+
+        p {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div> Dagens aktivitet 2.0</div>
+    <div id="root"></div>
+<script>
+    const response = JSON.parse(`[["https://media0.giphy.com/media/26xBIygOcC3bAWg3S/giphy.gif","Bli bjuden på middag."],["https://giphy.com/embed/vxRJWOAghqjXG","Bära saker."],["https://giphy.com/embed/gxNaJGcVscEWk","Se ett avsnitt Dark Matter."],["https://giphy.com/embed/iEomNKJ8EouLC","Vara sömnig."],["https://giphy.com/embed/xJjs8eGVbjNYY","Dans."],["https://giphy.com/embed/Aolw1y8teimRy","Hämta Ida."],["https://giphy.com/embed/lxl645yvYgs92","Spela Earth Defense Force: The Shadow of New Despair."]]`);
+    const root = document.getElementById("root");
+
+    fetch("/gif/1").then(response => {
+        response.json().then(addContent);
+    });
+
+    function addContent(content) {
+        for(let img of content) {
+            const url = img[0];
+            const quote = img[1];
+
+            const template = `
+                <div class="post">
+                    <img src="${url}" alt="${quote}">
+                    <p>${quote}</p>
+                </div>
+            `;
+            var el = document.createElement('div');
+            el.classList.add("box");
+            el.innerHTML = template;
+            root.append(el);
+        }
+    }
+</script>
+</body>

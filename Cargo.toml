@@ -1,0 +1,15 @@
+[package]
+name = "dagens-aktivitet-gif"
+version = "0.1.0"
+authors = ["Rikard Legge <rikard.legge@gmail.com>"]
+
+[dependencies]
+rocket = "0.3.4"
+rocket_codegen = "0.3.4"
+reqwest = "0.8.1"
+scraper = "0.4.0"
+serde_json = "1.0"
+
+[[bin]]
+name = "dagens-aktivitet-gif"
+path = "main.rs"
